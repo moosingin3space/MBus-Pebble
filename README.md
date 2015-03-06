@@ -10,7 +10,7 @@ The PebbleBus project is being worked by three people:
 
 1. moosingin3space
 
-2. Mwzee
+2. mzwee
 
 3. ExtremelySeriousChicken
 
