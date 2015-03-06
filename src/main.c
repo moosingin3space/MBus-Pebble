@@ -49,7 +49,7 @@ static void main_window_load(Window *window) {
   
   s_departs_label = text_layer_create(GRect(5, 90, 139, 20));
   text_layer_set_text_alignment(s_departs_label, GTextAlignmentCenter);
-  text_layer_set_text(s_departs_label, "Departs at:");
+  text_layer_set_text(s_departs_label, "Arriving in:");
   text_layer_set_font(s_departs_label, s_temp_font);
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_departs_label));
   
@@ -91,8 +91,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         break;
       case KEY_ARRIVAL:
         snprintf(stop_arrival_time, sizeof(stop_arrival_time), "%s", t->value->cstring);
-        memcpy(final_arrival, &stop_arrival_time[11], 8);
-        final_arrival[8] = '\0';
+ 
         break;
       case KEY_SIGN:
         snprintf(sign_buffer, sizeof(sign_buffer), "%s", t->value->cstring);
@@ -107,7 +106,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   
   vibes_double_pulse();
   text_layer_set_text(s_stop_layer, stop_name_buffer);
-  text_layer_set_text(s_arrival, final_arrival);
+  text_layer_set_text(s_arrival, stop_arrival_time);
   text_layer_set_text(s_sign, sign_buffer);
 }
 
