@@ -14,13 +14,13 @@
     "resources": {
         "media": [
             {
-                "file": "fonts/perfect-dos-vga.ttf",
-                "name": "FONT_DOS_VGA_12",
+                "file": "fonts/DroidSansMono.ttf",
+                "name": "FONT_DROID_12",
                 "type": "font"
             },
             {
-                "file": "fonts/perfect-dos-vga.ttf",
-                "name": "FONT_DOS_VGA_15",
+                "file": "fonts/DroidSansMono.ttf",
+                "name": "FONT_DROID_15",
                 "type": "font"
             }
         ]

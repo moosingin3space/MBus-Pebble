@@ -34,8 +34,8 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 }
 
 static void main_window_load(Window *window) {
-  s_temp_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DOS_VGA_15));
-  s_temp_font_12 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DOS_VGA_12));
+  s_temp_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DROID_15));
+  s_temp_font_12 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DROID_12));
   
   s_stop_label = text_layer_create(GRect(5, 25, 139, 20));
   text_layer_set_text_alignment(s_stop_label, GTextAlignmentCenter);
@@ -55,9 +55,10 @@ static void main_window_load(Window *window) {
   text_layer_set_font(s_departs_label, s_temp_font);
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_departs_label));
   
-  s_arrival = text_layer_create(GRect(5, 150, 139, 20));
+  s_arrival = text_layer_create(GRect(5, 110, 139, 25));
+  text_layer_set_text(s_arrival, "Loading...");
   text_layer_set_text_alignment(s_arrival, GTextAlignmentCenter);
-  text_layer_set_font(s_arrival, s_temp_font);
+  text_layer_set_font(s_arrival, s_temp_font_12);
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_arrival));
   
   s_sign = text_layer_create(GRect(5, 70, 139, 25));
@@ -85,16 +86,16 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   while(t != NULL) {
     switch(t->key) {
       case KEY_STOPID:
-        snprintf(stop_id_buffer, sizeof(stop_id_buffer), "%s", t->value->cstring);
+        strncpy(stop_id_buffer, t->value->cstring, sizeof(stop_id_buffer));
         break;
       case KEY_STOPNAME:
-        snprintf(stop_name_buffer, sizeof(stop_name_buffer), "%s", t->value->cstring);
+        strncpy(stop_name_buffer, t->value->cstring, sizeof(stop_name_buffer));
         break;
       case KEY_ARRIVAL:
-        snprintf(stop_arrival_time, sizeof(stop_arrival_time), "%s", t->value->cstring);
+        strncpy(stop_arrival_time, t->value->cstring, sizeof(stop_arrival_time));
         break;
       case KEY_SIGN:
-        snprintf(sign_buffer, sizeof(sign_buffer), "%s", t->value->cstring);
+        strncpy(sign_buffer, t->value->cstring, sizeof(sign_buffer));
         break;
       default:
         APP_LOG(APP_LOG_LEVEL_ERROR, "Key %d not recognized!", (int)t->key);
