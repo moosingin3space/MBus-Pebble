@@ -1,32 +1,26 @@
 {
     "appKeys": {
-        "KEY_ARRIVAL": 2,
-        "KEY_SIGN": 3,
-        "KEY_STOPID": 0,
-        "KEY_STOPNAME": 1
+        "KEY_BUSNAME": 1,
+        "KEY_STOPNAME": 0,
+        "KEY_TIME": 2
     },
     "capabilities": [
         "location"
     ],
     "companyName": "mzwee95@gmail.com",
-    "longName": "PebbleBus",
+    "longName": "BUS_SCHEDULE3",
     "projectType": "native",
     "resources": {
         "media": [
             {
-                "file": "fonts/DroidSansMono.ttf",
-                "name": "FONT_DROID_12",
-                "type": "font"
-            },
-            {
-                "file": "fonts/DroidSansMono.ttf",
-                "name": "FONT_DROID_15",
+                "file": "fonts/perfect-dos-vga.ttf",
+                "name": "FONT_DOS_VGA_15",
                 "type": "font"
             }
         ]
     },
     "sdkVersion": "2",
-    "shortName": "PebbleBus",
+    "shortName": "BUS_SCHEDULE3",
     "uuid": "78a285d7-9dd1-44fd-aba7-e36abb10a96e",
     "versionCode": 1,
     "versionLabel": "1.0",

@@ -15,14 +15,14 @@ function getBus(response, stop_id, stop_name){
   console.log("The next bus that is coming: " + busName);
   
     var nextBusTime = json.time;
+    console.log("Time: " + nextBusTime);
     nextBusTime = nextBusTime + " minutes";
-  console.log("Time: " + nextBusTime);
+    console.log(nextBusTime);
   //Assemble the information into a dictionary before passing it back to the C
   var dictionary = {
-            "KEY_STOPID": stop_id,
             "KEY_STOPNAME": stop_name,
-            "KEY_ARRIVAL": nextBusTime,
-            "KEY_SIGN": busName,
+            "KEY_BUSNAME" : busName,
+            "KEY_TIME" : nextBusTime,
           };
           
           // Send to Pebble
@@ -63,51 +63,6 @@ function locationSuccess(pos) {
   // Send request to the CUMTD
   xhrRequest(url, 'GET',
     reaction
-             
-             /*function(responseText) {
-      // responseText contains a JSON object with weather info
-      var json = JSON.parse(responseText);
-      
-      // Temperature in Kelvin requires adjustment
-      var stop_id = json.stops[0].stop_id;
-      console.log("Stop ID is " + stop_id);
-   
-      // Conditions
-      var stop_name = json.stops[0].stop_name;
-      console.log("Stop name is " + stop_name);
-      
-      var url2 = "https://developer.cumtd.com/api/v2.2/json/GetDeparturesByStop?key=9a1fc4aa940a4e5384a8950cc476b5e0&stop_id=" + stop_id;
-  
-      // Send request to the CUMTD
-      xhrRequest(url2, 'GET',
-        function(responseText) {
-          // responseText contains a JSON object with weather info
-          var json2 = JSON.parse(responseText);
-
-          var expected = json2.departures[0].expected;
-          console.log("Expected time to arrive: " + expected);
-
-          var headsign = json2.departures[0].headsign;
-          console.log("Trip Headsign is " + headsign);
-          
-          // Assemble dictionary using our keys
-          var dictionary = {
-            "KEY_STOPID": stop_id,
-            "KEY_STOPNAME": stop_name,
-            "KEY_ARRIVAL": expected,
-            "KEY_SIGN": headsign,
-          };
-          
-          // Send to Pebble
-          Pebble.sendAppMessage(dictionary,
-            function(e) {
-              console.log("Stops info sent to Pebble successfully!");
-            },
-            function(e) {
-              console.log("Error sending stops info to Pebble!");
-            });
-        });
-    }*/
   );
 }
 
