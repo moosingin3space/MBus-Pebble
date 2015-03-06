@@ -9,10 +9,15 @@
         "location"
     ],
     "companyName": "mzwee95@gmail.com",
-    "longName": "BUS_SCHEDULE3",
+    "longName": "PebbleBus",
     "projectType": "native",
     "resources": {
         "media": [
+            {
+                "file": "fonts/perfect-dos-vga.ttf",
+                "name": "FONT_DOS_VGA_12",
+                "type": "font"
+            },
             {
                 "file": "fonts/perfect-dos-vga.ttf",
                 "name": "FONT_DOS_VGA_15",
@@ -21,7 +26,7 @@
         ]
     },
     "sdkVersion": "2",
-    "shortName": "BUS_SCHEDULE3",
+    "shortName": "PebbleBus",
     "uuid": "78a285d7-9dd1-44fd-aba7-e36abb10a96e",
     "versionCode": 1,
     "versionLabel": "1.0",

@@ -15,8 +15,8 @@ function getBus(response, stop_id, stop_name){
   console.log("The next bus that is coming: " + busName);
   
     var nextBusTime = json.time;
-    console.log("Time: " + nextBusTime);
-    nextBusTime = nextBusTime+ " minutes";
+    nextBusTime = nextBusTime + " minutes";
+  console.log("Time: " + nextBusTime);
   //Assemble the information into a dictionary before passing it back to the C
   var dictionary = {
             "KEY_STOPID": stop_id,

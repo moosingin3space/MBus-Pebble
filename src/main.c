@@ -13,6 +13,7 @@ static TextLayer *s_departs_label;
 static TextLayer *s_arrival;
 static TextLayer *s_sign;
 static GFont s_temp_font;
+static GFont s_temp_font_12;
 
 static void update_time() {
   time_t temp = time(NULL);
@@ -34,6 +35,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 
 static void main_window_load(Window *window) {
   s_temp_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DOS_VGA_15));
+  s_temp_font_12 = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_DOS_VGA_12));
   
   s_stop_label = text_layer_create(GRect(5, 25, 139, 20));
   text_layer_set_text_alignment(s_stop_label, GTextAlignmentCenter);
@@ -44,7 +46,7 @@ static void main_window_load(Window *window) {
   s_stop_layer = text_layer_create(GRect(5, 45, 139, 20));
   text_layer_set_text_alignment(s_stop_layer, GTextAlignmentCenter);
   text_layer_set_text(s_stop_layer, "Loading...");
-  text_layer_set_font(s_stop_layer, s_temp_font);
+  text_layer_set_font(s_stop_layer, s_temp_font_12);
   layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_stop_layer));
   
   s_departs_label = text_layer_create(GRect(5, 90, 139, 20));
@@ -73,11 +75,10 @@ static void main_window_unload(Window *window) {
 
 static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
   // Store incoming information
-  static char stop_id_buffer[10];
-  static char stop_name_buffer[50];
-  static char stop_arrival_time[20];
-  static char final_arrival[9];
-  static char sign_buffer[50];
+  static char stop_id_buffer[64];
+  static char stop_name_buffer[64];
+  static char stop_arrival_time[64];
+  static char sign_buffer[64];
   
   Tuple *t = dict_read_first(iterator);
   
@@ -91,7 +92,6 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         break;
       case KEY_ARRIVAL:
         snprintf(stop_arrival_time, sizeof(stop_arrival_time), "%s", t->value->cstring);
- 
         break;
       case KEY_SIGN:
         snprintf(sign_buffer, sizeof(sign_buffer), "%s", t->value->cstring);
@@ -104,6 +104,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     t = dict_read_next(iterator); 
   }
   
+  APP_LOG(APP_LOG_LEVEL_INFO, "arriving in %s", stop_arrival_time);
   vibes_double_pulse();
   text_layer_set_text(s_stop_layer, stop_name_buffer);
   text_layer_set_text(s_arrival, stop_arrival_time);
