@@ -49,7 +49,7 @@ function reaction(response){
   
      //Trying to gain access to the details of the incoming bus
      //Calling the other API
-     var url = "http://pebblebus.herokuapp.com/next-bus?stop="+ stop_id;
+     var url = "http://pebblebus.appspot.com/next-bus?stop="+ stop_id;
      
      //Send request to the API provider
      xhrRequest(url, 'GET', function(response) {
@@ -59,7 +59,7 @@ function reaction(response){
 }
 function locationSuccess(pos) {
   // Construct URL
-  var url =  "http://pebblebus.herokuapp.com/closest-stop?lat=" + pos.coords.latitude + "&lon=" + pos.coords.longitude;
+  var url =  "http://pebblebus.appspot.com/closest-stop?lat=" + pos.coords.latitude + "&lon=" + pos.coords.longitude;
   // Send request to the CUMTD
   xhrRequest(url, 'GET', reaction);
 }
